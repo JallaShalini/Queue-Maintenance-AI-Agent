@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    container_name: queue_agent
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: >
+      bash -c "python -c 'from src.database import init_db; init_db()' && tail -f /dev/null"
