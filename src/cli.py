@@ -8,6 +8,11 @@ from src.database import init_db
 from src.graph import build_graph
 
 def main():
+    if not settings.OPENAI_API_KEY or "your_" in settings.OPENAI_API_KEY:
+        import os
+        os.environ["MOCK_LLM"] = "true"
+        os.environ["LANGCHAIN_TRACING_V2"] = "false"
+        
     parser = argparse.ArgumentParser(description="Queue Maintenance AI Agent CLI")
     parser.add_argument("--query", type=str, help="Instruction for the agent")
     parser.add_argument("--resume", type=str, help="Resume an interrupted action with Y or N")

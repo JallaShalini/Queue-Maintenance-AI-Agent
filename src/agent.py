@@ -7,7 +7,10 @@ from langsmith import traceable  # type: ignore
 @traceable
 def plan_node(state: AgentState) -> dict:
     if os.environ.get("MOCK_LLM") == "true":
-        return {"proposed_actions": state.get("proposed_actions", [])}
+        props = state.get("proposed_actions")
+        if not props:
+            props = [{"type": "purge_stale", "row_ids": ["dummy_post_id"]}]
+        return {"proposed_actions": props}
         
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
     llm_with_tools = llm.bind_tools(tools)
