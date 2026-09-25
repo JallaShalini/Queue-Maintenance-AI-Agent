@@ -1,13 +1,14 @@
 import sqlite3
 import json
 from typing import Dict, Any, List
-from langgraph.graph import StateGraph, START, END
-from langgraph.types import interrupt
-from langsmith import traceable
+from langgraph.graph import StateGraph, START, END  # type: ignore
+from langgraph.types import interrupt  # type: ignore
+from langsmith import traceable  # type: ignore
 
 from src.state import AgentState
 from src.trust_engine import check_trust, increment_trust
 from src.operations import execute_mutation
+from src.agent import plan_node
 import config.settings as settings
 
 def perceive_node(state: AgentState) -> Dict[str, Any]:
@@ -21,7 +22,6 @@ def perceive_node(state: AgentState) -> Dict[str, Any]:
     
     return {"queue_snapshot": rows}
 
-from src.agent import plan_node
 
 @traceable
 def check_trust_node(state: AgentState) -> Dict[str, Any]:
