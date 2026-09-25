@@ -8,8 +8,9 @@ from src.database import init_db
 from src.graph import build_graph
 
 def main():
-    if not settings.OPENAI_API_KEY or "your_" in settings.OPENAI_API_KEY:
-        import os
+    import os
+    api_key = os.environ.get("OPENAI_API_KEY", "your_llm_api_key")
+    if not api_key or "your_" in api_key:
         os.environ["MOCK_LLM"] = "true"
         os.environ["LANGCHAIN_TRACING_V2"] = "false"
         
