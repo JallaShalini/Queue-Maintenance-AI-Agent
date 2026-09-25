@@ -1,8 +1,8 @@
 import os
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI  # type: ignore
 from src.state import AgentState
 from src.tools import tools
-from langsmith import traceable
+from langsmith import traceable  # type: ignore
 
 @traceable
 def plan_node(state: AgentState) -> dict:

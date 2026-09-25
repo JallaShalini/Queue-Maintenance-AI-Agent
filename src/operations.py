@@ -2,7 +2,7 @@ import sqlite3
 import json
 import uuid
 from typing import Dict, Any, Optional
-from langsmith import traceable
+from langsmith import traceable  # type: ignore
 import config.settings as settings
 
 @traceable

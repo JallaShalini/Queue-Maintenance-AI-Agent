@@ -5,8 +5,8 @@ import sys
 # Update path to import config
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from langgraph.checkpoint.memory import MemorySaver
-from langgraph.types import Command
+from langgraph.checkpoint.memory import MemorySaver  # type: ignore
+from langgraph.types import Command  # type: ignore
 import config.settings as settings
 from src.database import init_db
 from src.graph import build_graph
